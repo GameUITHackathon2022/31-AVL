@@ -11,7 +11,7 @@ const Header = () => {
   const { user } = useContext(UserContext)
 	
   return (
-    <div className='w-full'>
+    <div className='w-full bg-white shadow-navbar flex justify-end py-2'>
       <div className='flex justify-end py-2 px-24'>
         <div className='flex items-center'>
           <NotifyHeader user={user} />

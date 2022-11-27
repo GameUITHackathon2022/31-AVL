@@ -9,14 +9,19 @@ const ChooseList = () => {
     // const handleSubmit = () => {
 
     // }
+    const [ rangeDay, setRangeDay ] = useState([
+      {
+        endDate: new Date(),
+        startDate: new Date(),
+        key: 'selection'
+      }
+      ]);
     const [ chooseTime, setChooseTime ] = useState(false)
     const [ taskList, setTaskList ] = useState([])
-    console.log('====================================');
-    console.log(taskList);
-    console.log('====================================');
+ 
   return (
     <SignInLayout>
-        {chooseTime ? <TaskList setChooseTime={setChooseTime} setTaskList={setTaskList}/> : <Time setChooseTime={setChooseTime} setTaskList={setTaskList}/>}
+        {chooseTime ? <TaskList setChooseTime={setChooseTime} taskList={taskList} setTaskList={setTaskList} rangeDay={rangeDay} setRangeDay={setRangeDay}/> : <Time setChooseTime={setChooseTime} setTaskList={setTaskList} rangeDay={rangeDay} setRangeDay={setRangeDay}/>}
     </SignInLayout>
   )
 }

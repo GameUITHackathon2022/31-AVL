@@ -1,6 +1,7 @@
 import React from 'react'
 import Header from './Header'
-
+import { ToastContainer } from 'react-toastify';
+import "react-toastify/ReactToastify.min.css";
 const DefaultLayout = ({ children }) => {  
   return (
     
@@ -9,6 +10,7 @@ const DefaultLayout = ({ children }) => {
             <div className="w-full h-screen">
                 { children }
             </div>
+            <ToastContainer position="bottom-right" autoClose={1500} newestOnTop/>
         </div>
   )
 }

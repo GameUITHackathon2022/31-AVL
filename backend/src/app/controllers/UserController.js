@@ -44,56 +44,26 @@ class UsersController {
             next(err)
         }
     }
-    async showFavourite(req,res,next) {        
+    async showTask(req,res,next) {        
         try {
             const userData = await User.findOne({ email :req.query.email })
-            res.status(200).json(userData.favourite)
+            res.status(200).json(userData.tasks)
         } catch(err) {
             next(err)
         }
     }
 
-    async updateActivity(req,res,next) {        
-        try {
-            const updateActivity = await User.findOneAndUpdate({ email :req.query.email }, { $push: { activity: req.body }}, { new: true })
-            res.status(200).json(updateActivity)
-        } catch(err) {
-            next(err)
-        }
-    }
-    async showActivity(req,res,next) {        
-        try {
-            const userData = await User.findOne({ email :req.query.email })
-            res.status(200).json(userData.activity)
-        } catch(err) {
-            next(err)
-        }
-    }
+    
 
-    async updateStorage(req,res,next) {        
+    async updateTask(req,res,next) {        
         try {
-            const updateStorage = await User.findOneAndUpdate({ email :req.query.email }, { $push: { storage: req.body }}, { new: true })
-            res.status(200).json(updateStorage)
+            const updateTask = await User.findOneAndUpdate({ email :req.query.email }, { $push: { tasks: req.body }}, { new: true })
+            res.status(200).json(updateTask)
         } catch(err) {
             next(err)
         }
     }
-    async showStorage(req,res,next) {        
-        try {
-            const userData = await User.findOne({ email :req.query.email })
-            res.status(200).json(userData.storage)
-        } catch(err) {
-            next(err)
-        }
-    }
-    async deleteStorage(req,res,next) {        
-        try {
-            const userData = await User.update({ email :req.query.email }, { $pull: {storage: req.body}})
-            res.status(200).json(userData.storage)
-        } catch(err) {
-            next(err)
-        }
-    }
+    
     async updateNotifyAll(req,res,next) {        
         try {
             const updateNotify = await User.updateMany({}, { $push: { notification: req.body }}, { new: true })
@@ -103,19 +73,19 @@ class UsersController {
         }
     }
 
-    async updateNotify(req,res,next) {        
+    async updateScore(req,res,next) {        
         try {
-            const updateNotify = await User.findOneAndUpdate({ email: req.query.email }, { $push: { notification: req.body }}, { new: true })
-            res.status(200).json(updateNotify)
+            const updateScore = await User.findOneAndUpdate({ email: req.query.email }, { $push: { scores: req.body }}, { new: true })
+            res.status(200).json(updateScore)
         } catch(err) {
             next(err)
         }
     }
 
-    async showNotify(req,res,next) {        
+    async showScore(req,res,next) {        
         try {
             const userData = await User.findOne({ email :req.query.email })
-            res.status(200).json(userData.notification)
+            res.status(200).json(userData.scores)
         } catch(err) {
             next(err)
         }

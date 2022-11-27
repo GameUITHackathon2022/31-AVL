@@ -45,7 +45,7 @@ const NotifyHeader = ({ user }) => {
 //   moment(blog.published).startOf('ss').fromNow()
   return (
     <>
-        <div className='relative  px-2 border-2 border-slate-900 text-black rounded-full w-12 h-12 mx-6 flex justify-center items-center'
+        <div className='relative px-2 border-2 border-slate-900 text-black rounded-full w-12 h-12 mx-6 flex justify-center items-center'
             onMouseMove={() => setIsNotify(true)}
             onMouseOut={() => setIsNotify(false)}
         >

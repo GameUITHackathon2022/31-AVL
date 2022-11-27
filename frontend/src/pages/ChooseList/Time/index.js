@@ -3,15 +3,8 @@ import { formatDate } from "../../../algorithm/formatDate"
 import { DateRange } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; // main css file
 import 'react-date-range/dist/theme/default.css'; // theme css file
-
-const Time = ({ setChooseTime, setTaskList }) => {
-  const [ rangeDay, setRangeDay ] = useState([
-  {
-    endDate: new Date(),
-    startDate: new Date(),
-    key: 'selection'
-  }
-  ]);
+import BgSignIn from "../../../assets/BgSignIn.png"
+const Time = ({ setChooseTime, setTaskList, rangeDay, setRangeDay }) => {
   
   const handleNext = () => {
     setChooseTime(true)
@@ -23,7 +16,7 @@ const Time = ({ setChooseTime, setTaskList }) => {
             <h1 className='font-bold text-5xl'>Chọn thời gian</h1>
             <p className='text-2xl text-slate-500'>Thời gian bạn sẽ làm các công việc bên dưới trong vòng khoảng</p>
             
-            <div className='group flex text-center relative text-xl my-4 justify-center border border-black dark:border-white rounded-lg px-4 py-2 mx-2 '
+            <div className='group flex text-center relative text-xl my-4 justify-center border border-black bg-green-200 dark:border-white rounded-lg px-4 py-2 mx-2 '
             >
               {formatDate(rangeDay[0].startDate,'/')} - {formatDate(rangeDay[0].endDate, '/')}
               <div className='group-hover:flex hidden absolute top-10 z-40 justify-center'>
@@ -47,6 +40,9 @@ const Time = ({ setChooseTime, setTaskList }) => {
             </div>
             
         </div>
+        <div className='right bg-primary-color lg:object-cover lg:block hidden'>
+                <img src={BgSignIn} />
+            </div>
     </div>
   )
 }

@@ -1,9 +1,20 @@
 import React, { memo, useState, useEffect } from 'react'
+import { formatDate } from '../../../algorithm/formatDate'
+import { handleCalendar } from '../../../algorithm/handleCalendar'
+import { GrFormNextLink, GrFormPreviousLink } from "react-icons/gr"
 
-
-const Calendar = () => {
+const Calendar = ({ date, taskTemp, setDate }) => {
     // const { favouriteSubject, setFavouriteSubject } = useContext(UserContext)
-
+    useEffect(() => {
+        if(taskTemp) {
+            for(let i = 0; i < taskTemp[0].length; i++) {
+                if(taskTemp[0][i].Date == formatDate(date,"/")) {
+                    handleCalendar(taskTemp[0][i].ListTask, date)
+                }
+            }
+        }
+    }, [taskTemp, date])
+    // const [check, setCheck ] = useState(false)
     const tableElement = document.getElementById("myTableWeek")
     const dayArr =  ['0', '1', '2', '3', '4', '5', '6', '7']
     if(tableElement) {
@@ -58,19 +69,40 @@ const Calendar = () => {
             
          }
     }
-    
+    // useEffect(() => {
+    const newDate = new Date(date)
+    const dateArr = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat']
+    const dateChoose = dateArr[newDate.getDay()]
+    // }, [date])
+    const handleNext = () => {
+        const newDate = new Date(date)
+        var increasedDate = new Date(newDate.getTime() + (1 *86400000));
+
+        setDate(increasedDate)
+    }
+    const handleBack = () => {
+        const newDate = new Date(date)
+        var increasedDate = new Date(newDate.getTime() - (1 *86400000));
+
+        setDate(increasedDate)
+    }
   return (
-    <div className='text-xl px-10 py-20 h-full w-full flex'>  
+    <div className=' px-10 py-20'>
+        <div>
+            <button onClick={handleBack}><GrFormPreviousLink size={23} /></button>
+            <button onClick={handleNext}><GrFormNextLink size={23} /></button>
+        </div>
+        <div className='text-xlh-full w-full flex flex-col'>  
         <table className="table-auto w-[100%] h-[500px] border-collapse dark:bg-darkmode bg-white rounded-2xl overflow-hidden shadow-2xl" id="myTableWeek">
             <thead>
-                <tr className='border-b border-gray-400 bg-blue-400 dark:bg-blue-600 py-2'>
-                <th className='border-l border-gray-400 py-2'>MON</th>
-                <th className='border-l border-gray-400 py-2'>TUE</th>
-                <th className='border-l border-gray-400 py-2'>WED</th>
-                <th className='border-l border-gray-400 py-2'>THU</th>
-                <th className='border-l border-gray-400 py-2'>FRI</th>
-                <th className='border-l border-gray-400 py-2'>SAT</th>
-                <th className='border-l border-gray-400 py-2'>SUN</th>
+                <tr className='border-b border-gray-400 py-2'>
+                    <th className='border-l border-gray-400 py-2  w-[180px] bg-primary1 opacity-60' style={{ opacity: `${dateChoose == 'mon' ? '1' : '0.6'}`}}>MON</th>
+                    <th className='border-l border-gray-400 py-2  w-[180px] bg-primary1 opacity-60' style={{ opacity: `${dateChoose == 'tue' ? '1' : '0.6'}`}}>TUE</th>
+                    <th className='border-l border-gray-400 py-2  w-[180px] bg-primary1 opacity-60' style={{ opacity: `${dateChoose == 'wed' ? '1' : '0.6'}`}}>WED</th>
+                    <th className='border-l border-gray-400 py-2  w-[180px] bg-primary1 opacity-60' style={{ opacity: `${dateChoose == 'thu' ? '1' : '0.6'}` }}>THU</th>
+                    <th className='border-l border-gray-400 py-2  w-[180px] bg-primary1 opacity-60' style={{ opacity: `${dateChoose == 'fri' ? '1' : '0.6'}` }}>FRI</th>
+                    <th className='border-l border-gray-400 py-2  w-[180px] bg-primary1 opacity-60' style={{ opacity: `${dateChoose == 'sat' ? '1' : '0.6'}` }}>SAT</th>
+                    <th className='border-l border-gray-400 py-2  w-[180px] bg-primary1 opacity-60' style={{ opacity: `${dateChoose == 'sun' ? '1' : '0.6'}` }}>SUN</th>
                 </tr>
             </thead>
             <tbody>
@@ -86,6 +118,7 @@ const Calendar = () => {
                 
             </tbody>
         </table>   
+        </div>
     </div>
   )
 }

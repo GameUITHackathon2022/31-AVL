@@ -18,7 +18,7 @@ const UserHeader = ({ user }) => {
     <div
         onMouseMove={() => setDropdown(true)}
         onMouseOut={() => setDropdown(false)}
-        className='relative flex items-center justify-center cursor-pointer rounded-2xl py-2 bg-note-3 text-black'
+        className='relative flex items-center justify-center cursor-pointer rounded-2xl py-2 bg-note-3 text-black bg-green-200'
     >
         <div className='px-2'>
             <img className='w-14 h-14 rounded-full' src={user.imageUrl ?user.imageUrl: `https://avatars.dicebear.com/api/micah/${Math.random()}.svg`} />
@@ -31,7 +31,7 @@ const UserHeader = ({ user }) => {
             <IoMdArrowDropdown className={dropdown ? 'duration-300 transform rotate-180' : 'duration-300'} size={18}/>
         </div>
         {dropdown && 
-            <div className='scale-up-tr flex flex-col rounded-xl text-black overflow-hidden py-6 bg-notify shadow border-sm border-slate-200 w-80 z-50 absolute top-16 right-0'>
+            <div className='scale-up-tr flex flex-col rounded-xl bg-slate-200 text-black overflow-hidden py-6 bg-notify shadow border-sm border-slate-200 w-80 z-50 absolute top-16 right-0'>
                 <div className='mx-4'>
                     <h2 className='text-2xl mb-4 font-semibold'>{user.name}</h2>
                     <div className='h-1 w-full bg-slate-200'></div>
@@ -39,6 +39,9 @@ const UserHeader = ({ user }) => {
                 <div className='flex flex-col justify-between h-full'>
                     <div className='text-xl mx-4 '>
                         <div>Email: {user.email}</div>
+                    </div>
+                    <div className='text-2xl mx-4 '>
+                        <div><b>Score:</b> 0</div>
                     </div>
                     <div
                         onClick={() => handleLogOut()} 

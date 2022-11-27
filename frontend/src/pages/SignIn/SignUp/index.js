@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { AuthRegister } from '../../../services/AuthApi'
 import { useCookies } from 'react-cookie'
 import { gapi } from "gapi-script";
+import BgSignIn from "../../../assets/BgSignIn.png"
 const checkIsValidField = (user) => {
     if(user.name == '') {
         return "Please fill in the blank fields."
@@ -120,6 +121,9 @@ const SignUp = () => {
                     Aldready have an account?
                     <Link to="/login" className='ml-2 text-primary-text-color'> Log in </Link> 
                 </div>
+            </div>
+            <div className='right bg-primary-color lg:object-cover lg:block hidden h-[500px]'>
+                <img src={BgSignIn} />
             </div>
         </div>
     </SignInLayout>

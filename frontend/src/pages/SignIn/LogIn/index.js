@@ -5,7 +5,7 @@ import { FcGoogle } from 'react-icons/fc'
 import { Link } from 'react-router-dom'
 import { AuthLogin } from '../../../services/AuthApi'
 import { useCookies } from 'react-cookie'
-
+import BgSignIn from "../../../assets/BgSignIn.png"
 const checkIsValidField = (user) => {
     if(user.email == '') {
         return "Please fill in the blank fields."
@@ -116,6 +116,9 @@ const LogIn = () => {
                     Doesn't have an account?
                     <Link to="/signup" className='ml-2 text-primary-text-color'> Sign up </Link> 
                 </div>
+            </div>
+            <div className='right bg-primary-color lg:object-cover lg:block hidden'>
+                <img src={BgSignIn} />
             </div>
         </div>
     </SignInLayout>

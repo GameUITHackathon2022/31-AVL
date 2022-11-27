@@ -23,21 +23,13 @@ const User = new Schema({
         type: Boolean,
         // required: true
     },
-    subjects: {
+    scores: {
+        type: Number
+    },
+    tasks: {
         type: []
     },
-    favourite: {
-        type: []
-    },
-    storage: {
-        type: []
-    },
-    activity: {
-        type: []
-    },
-    notification: {
-        type: []
-    },
+    
     },
     { timestamps: true }
 )
